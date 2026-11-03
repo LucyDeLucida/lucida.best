@@ -45,6 +45,11 @@
 #circ{width:90px;height:90px;border-radius:50%;border:2px solid var(--oro);background:radial-gradient(circle,rgba(216,176,76,.5),rgba(216,176,76,.05));box-shadow:0 0 30px rgba(216,176,76,.35);display:flex;align-items:center;justify-content:center;transition:transform 4s ease-in-out;text-align:center;font-size:1rem}
 #carta{min-height:7.5rem;display:flex;align-items:center;justify-content:center;text-align:center;font-style:italic;font-size:1.4rem;padding:1rem;border:1px solid var(--oro);margin-top:1rem}
 #sacar{margin-top:1.25rem}
+.dorso{background:repeating-linear-gradient(45deg,rgba(216,176,76,.09) 0 8px,transparent 8px 16px);font-style:normal;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.rev{animation:rev .7s ease both}
+@keyframes rev{from{opacity:0;transform:rotateY(80deg) scale(.96)}to{opacity:1;transform:none}}
+.vela.quieta .llama{animation-play-state:paused;opacity:.5}
+@media(prefers-reduced-motion:reduce){.rev{animation:none}}
 #fi{display:flex;gap:.5rem;margin-top:1rem}
 #fi input{flex:1;min-width:0;padding:.6rem;background:transparent;border:1px solid var(--oro);color:var(--pergamino);font:inherit}
 #lista{list-style:none;margin-top:1rem}
@@ -116,16 +121,17 @@
         <!-- CARTA -->
         <article class="marco centro-p">
           <h2>Carta del día</h2>
-          <p class="nota" id="cl">Carta de hoy</p>
-          <div id="carta" aria-live="polite"></div>
-          <button class="btn peq" id="sacar">Otra carta</button>
+          <p class="nota" id="cl">Tu carta de hoy</p>
+          <div id="carta" class="dorso" aria-live="polite">✦ Recibo mi carta de hoy ✦</div>
+          <button class="btn peq" id="sacar">Descubrir la carta de hoy</button>
         </article>
 
         <!-- INTENCIONES -->
         <article class="marco ancho">
           <h2>Intenciones</h2>
+          <p class="nota">(Agregá acá tu lista de quehaceres y tildá los que vayas completando.)</p>
           <form id="fi">
-            <input id="ti" type="text" maxlength="90" placeholder="¿En qué vas a trabajar en esta sesión?" aria-label="Nueva intención">
+            <input id="ti" type="text" maxlength="90" placeholder="Escribí un quehacer de tu lista…" aria-label="Nuevo quehacer">
             <button class="btn peq" type="submit">Agregar</button>
           </form>
           <ul id="lista"></ul>
@@ -173,7 +179,8 @@ function pinta(){
   const m=String(Math.floor(left/60)).padStart(2,'0'),s=String(left%60).padStart(2,'0');
   $('tiempo').textContent=m+':'+s;
   document.title=(tid?m+':'+s+' · ':'')+TT;
-  $('vela').style.setProperty('--h',(modo==='enfoque'?12+88*left/M.enfoque:100)+'%');
+  $('vela').style.setProperty('--h',(modo==='enfoque'?6+94*left/M.enfoque:100)+'%');
+  $('vela').classList.toggle('quieta',!tid&&left<M[modo]);
   $('modo').textContent=modo==='enfoque'?'Tiempo de enfoque':'Tiempo de pausa';
   $('m-enfoque').classList.toggle('act',modo==='enfoque');$('m-pausa').classList.toggle('act',modo==='pausa');
 }
@@ -199,9 +206,12 @@ $('resp').onclick=()=>{bon=!bon;clearTimeout(bt);$('resp').textContent=bon?'Dete
 /* ---------- Carta del día (los textos están en cartas.js) ---------- */
 
 if(typeof CARTAS!=='undefined'&&CARTAS.length){
-  let actual=cartaDeHoy();$('carta').textContent=actual;
-  $('sacar').onclick=()=>{let t;do{t=CARTAS[Math.floor(Math.random()*CARTAS.length)]}while(t===actual&&CARTAS.length>1);
-    actual=t;$('carta').textContent=t;$('cl').textContent='Una carta al azar'};
+  let actual=null;
+  const muestra=t=>{const c=$('carta');c.classList.remove('dorso','rev');c.textContent=t;void c.offsetWidth;c.classList.add('rev')};
+  $('sacar').onclick=()=>{
+    if(actual===null){actual=cartaDeHoy();muestra(actual);$('cl').textContent='Carta de hoy';$('sacar').textContent='Otra carta';return}
+    let t;do{t=CARTAS[Math.floor(Math.random()*CARTAS.length)]}while(t===actual&&CARTAS.length>1);
+    actual=t;muestra(t);$('cl').textContent='Una carta al azar'};
 }else{$('carta').textContent='No se encontró cartas.js';}
 
 /* ---------- Intenciones ---------- */
