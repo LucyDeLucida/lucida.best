@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Scriptorium: pomodoro cozy y carta del día | Lúcida</title>
+<meta name="description" content="Un rincón para hacer pausas: pomodoro con vela, sonidos de lluvia, fuego y viento, respiración guiada y una carta distinta cada día.">
+<meta name="theme-color" content="#15302F">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Lúcida · Comunicación Esotérica">
+<meta property="og:title" content="El Scriptorium: pomodoro cozy y carta del día | Lúcida">
+<meta property="og:description" content="Un rincón para hacer pausas: pomodoro con vela, sonidos de lluvia, fuego y viento, respiración guiada y una carta distinta cada día.">
+<link rel="canonical" href="https://lucida.best/scriptorium.html">
+<meta property="og:url" content="https://lucida.best/scriptorium.html">
+<meta property="og:image" content="https://lucida.best/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lúcida · Comunicación Esotérica">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Google Analytics: sacá los comentarios y reemplazá G-XXXXXXXXXX por tu ID de medición
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+<style>
+.noche{background:radial-gradient(ellipse at 50% 25%,#244a47,#0d1f1e 75%)}
+.tit{font-size:clamp(2.6rem,9vw,5rem);color:var(--oro);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:2.5rem 2rem;margin-top:2rem}
+.ancho{grid-column:1/-1}
+.marco h2{font-size:1.9rem;text-align:center}
+.marco{background:rgba(10,24,23,.55)}
+.nota{text-align:center;font-style:italic;opacity:.8;font-size:1rem}
+.pomo{display:flex;flex-wrap:wrap;gap:2rem 3rem;justify-content:center;align-items:center}
+#tiempo{font-family:var(--disp);font-size:clamp(3.5rem,12vw,6rem);color:var(--oro);line-height:1;text-align:center}
+.centro-p{text-align:center}
+.btn.peq{padding:.4rem 1.2rem;font-size:1rem;margin:.4rem .2rem 0;cursor:pointer;font-family:var(--txt)}
+.btn.act{background:var(--oro);color:var(--verde)}
+.snd label{display:block;margin-top:1rem}
+.snd input[type=range]{width:100%;accent-color:var(--oro)}
+.aire{width:150px;height:150px;margin:1rem auto;display:flex;align-items:center;justify-content:center}
+#circ{width:90px;height:90px;border-radius:50%;border:2px solid var(--oro);background:radial-gradient(circle,rgba(216,176,76,.5),rgba(216,176,76,.05));box-shadow:0 0 30px rgba(216,176,76,.35);display:flex;align-items:center;justify-content:center;transition:transform 4s ease-in-out;text-align:center;font-size:1rem}
+#carta{min-height:7.5rem;display:flex;align-items:center;justify-content:center;text-align:center;font-style:italic;font-size:1.4rem;padding:1rem;border:1px solid var(--oro);margin-top:1rem}
+#sacar{margin-top:1.25rem}
+#fi{display:flex;gap:.5rem;margin-top:1rem}
+#fi input{flex:1;min-width:0;padding:.6rem;background:transparent;border:1px solid var(--oro);color:var(--pergamino);font:inherit}
+#lista{list-style:none;margin-top:1rem}
+#lista li{display:flex;gap:.75rem;align-items:center;padding:.4rem 0;border-top:1px solid rgba(216,176,76,.3)}
+#lista span{flex:1}
+#lista .hecha{text-decoration:line-through;opacity:.55}
+#lista button{background:none;border:0;color:var(--oro);font-size:1.4rem;cursor:pointer}
+#lista input{accent-color:var(--oro)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="nav" aria-label="Principal">
+    <a class="logo" href="index.html">LÚCIDA</a>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dispositivos.html">Dispositivos</a></li>
+      <li><a href="metodo.html">Método y aviso</a></li>
+      <li><a class="dest" href="scriptorium.html" aria-current="page">El Scriptorium</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="noche">
+  <section>
+    <div class="wrap">
+      <h1 class="tit">El Scriptorium</h1>
+      <p class="sub">Un rincón para quedarte un rato</p>
+      <div class="orn" role="presentation"></div>
+
+      <div class="grid">
+        <!-- POMODORO -->
+        <article class="marco ancho">
+          <h2>La vela</h2>
+          <div class="pomo">
+            <div>
+              <div class="vela" id="vela"><div class="cera"></div><div class="llama"></div></div>
+              <div class="platillo"></div>
+            </div>
+            <div class="centro-p">
+              <p id="modo" class="nota">Tiempo de enfoque</p>
+              <p id="tiempo" role="timer" aria-live="off">25:00</p>
+              <button class="btn peq" id="go">Encender</button>
+              <button class="btn peq sec" id="reset">Reiniciar</button><br>
+              <button class="btn peq sec act" id="m-enfoque">Enfoque 25′</button>
+              <button class="btn peq sec" id="m-pausa">Pausa 5′</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- SONIDOS -->
+        <article class="marco snd">
+          <h2>Ambiente</h2>
+          <label>Lluvia <input type="range" min="0" max="100" value="0" data-s="lluvia"></label>
+          <label>Fuego <input type="range" min="0" max="100" value="0" data-s="fuego"></label>
+          <label>Viento <input type="range" min="0" max="100" value="0" data-s="viento"></label>
+          <p class="centro-p"><button class="btn peq sec" id="mudo">Silencio</button></p>
+          <p class="nota">Mové un control para encender el sonido.</p>
+        </article>
+
+        <!-- RESPIRACIÓN -->
+        <article class="marco centro-p">
+          <h2>Respirar</h2>
+          <div class="aire"><div id="circ"><span id="btxt">Listo</span></div></div>
+          <button class="btn peq" id="resp">Empezar</button>
+        </article>
+
+        <!-- CARTA -->
+        <article class="marco centro-p">
+          <h2>Carta del día</h2>
+          <p class="nota" id="cl">Carta de hoy</p>
+          <div id="carta" aria-live="polite"></div>
+          <button class="btn peq" id="sacar">Otra carta</button>
+        </article>
+
+        <!-- INTENCIONES -->
+        <article class="marco ancho">
+          <h2>Intenciones</h2>
+          <form id="fi">
+            <input id="ti" type="text" maxlength="90" placeholder="¿En qué vas a trabajar en esta sesión?" aria-label="Nueva intención">
+            <button class="btn peq" type="submit">Agregar</button>
+          </form>
+          <ul id="lista"></ul>
+          <p class="nota">Se guardan en este navegador.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="orn" role="presentation"></div>
+  <p>© Lúcida · Comunicación Esotérica</p>
+</footer>
+
+<script src="cartas.js"></script>
+<script src="cartadia.js"></script>
+<script>
+const $=i=>document.getElementById(i);
+
+/* ---------- Audio (Web Audio, sin archivos) ---------- */
+let ac,G={};const K={lluvia:.35,fuego:1,viento:.7};
+function init(){
+  if(ac){ac.resume();return}
+  ac=new(window.AudioContext||window.webkitAudioContext)();
+  const n=ac.sampleRate*2,bw=ac.createBuffer(1,n,ac.sampleRate),bb=ac.createBuffer(1,n,ac.sampleRate),w=bw.getChannelData(0),b=bb.getChannelData(0);
+  let l=0;for(let i=0;i<n;i++){const r=Math.random()*2-1;w[i]=r;l=(l+.02*r)/1.02;b[i]=l*3.5}
+  const f=(t,hz,q)=>{const x=ac.createBiquadFilter();x.type=t;x.frequency.value=hz;if(q)x.Q.value=q;return x};
+  const loop=(buf,...fx)=>{const s=ac.createBufferSource();s.buffer=buf;s.loop=true;let p=s;fx.forEach(x=>{p.connect(x);p=x});s.start()};
+  ['lluvia','fuego','viento'].forEach(k=>{G[k]=ac.createGain();G[k].gain.value=0;G[k].connect(ac.destination)});
+  loop(bw,f('highpass',900),f('lowpass',7500),G.lluvia);
+  loop(bb,f('lowpass',450),G.fuego);
+  const bp=f('bandpass',500,.8);loop(bb,bp,G.viento);
+  const o=ac.createOscillator(),og=ac.createGain();o.frequency.value=.12;og.gain.value=300;o.connect(og);og.connect(bp.frequency);o.start();
+  setInterval(()=>{if(Math.random()<.6){const s=ac.createBufferSource(),g=ac.createGain(),h=f('bandpass',1500+Math.random()*3500,2),t=ac.currentTime;
+    s.buffer=bw;s.connect(h);h.connect(g);g.connect(G.fuego);g.gain.setValueAtTime(Math.random()*1.2,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);s.start(t,Math.random(),.06)}},140);
+}
+document.querySelectorAll('[data-s]').forEach(r=>{r.oninput=()=>{init();G[r.dataset.s].gain.setTargetAtTime(r.value/100*K[r.dataset.s],ac.currentTime,.15)}});
+$('mudo').onclick=()=>document.querySelectorAll('[data-s]').forEach(r=>{r.value=0;if(ac)r.oninput()});
+function campana(){init();const t=ac.currentTime;[528,792].forEach((hz,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=hz;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25/(i+1),t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+3);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+3)})}
+
+/* ---------- Pomodoro con vela ---------- */
+const TT=document.title;const M={enfoque:1500,pausa:300};let modo='enfoque',left=M.enfoque,fin=0,tid=null;
+function pinta(){
+  const m=String(Math.floor(left/60)).padStart(2,'0'),s=String(left%60).padStart(2,'0');
+  $('tiempo').textContent=m+':'+s;
+  document.title=(tid?m+':'+s+' · ':'')+TT;
+  $('vela').style.setProperty('--h',(modo==='enfoque'?12+88*left/M.enfoque:100)+'%');
+  $('modo').textContent=modo==='enfoque'?'Tiempo de enfoque':'Tiempo de pausa';
+  $('m-enfoque').classList.toggle('act',modo==='enfoque');$('m-pausa').classList.toggle('act',modo==='pausa');
+}
+function para(){clearInterval(tid);tid=null;$('go').textContent='Encender'}
+function cambia(m){para();modo=m;left=M[m];pinta()}
+$('go').onclick=()=>{
+  if(tid){para();pinta();return}
+  init();fin=Date.now()+left*1000;$('go').textContent='Pausar';
+  tid=setInterval(()=>{left=Math.max(0,Math.round((fin-Date.now())/1000));
+    if(left===0){campana();cambia(modo==='enfoque'?'pausa':'enfoque');return}pinta()},500);pinta();
+};
+$('reset').onclick=()=>cambia(modo);
+$('m-enfoque').onclick=()=>cambia('enfoque');$('m-pausa').onclick=()=>cambia('pausa');
+pinta();
+
+/* ---------- Respiración ---------- */
+let bt,bon=false;const ci=$('circ'),tx=$('btxt');
+function ciclo(){if(!bon)return;tx.textContent='Inhalá';ci.style.transitionDuration='4s';ci.style.transform='scale(1.6)';
+  bt=setTimeout(()=>{tx.textContent='Sostené';bt=setTimeout(()=>{tx.textContent='Exhalá';ci.style.transitionDuration='6s';ci.style.transform='scale(1)';bt=setTimeout(ciclo,6000)},2000)},4000)}
+$('resp').onclick=()=>{bon=!bon;clearTimeout(bt);$('resp').textContent=bon?'Detener':'Empezar';
+  if(bon)ciclo();else{tx.textContent='Listo';ci.style.transitionDuration='1s';ci.style.transform='scale(1)'}};
+
+/* ---------- Carta del día (los textos están en cartas.js) ---------- */
+
+if(typeof CARTAS!=='undefined'&&CARTAS.length){
+  let actual=cartaDeHoy();$('carta').textContent=actual;
+  $('sacar').onclick=()=>{let t;do{t=CARTAS[Math.floor(Math.random()*CARTAS.length)]}while(t===actual&&CARTAS.length>1);
+    actual=t;$('carta').textContent=t;$('cl').textContent='Una carta al azar'};
+}else{$('carta').textContent='No se encontró cartas.js';}
+
+/* ---------- Intenciones ---------- */
+let it=[];try{it=JSON.parse(localStorage.getItem('lucida-int')||'[]')}catch(e){}
+const guarda=()=>{try{localStorage.setItem('lucida-int',JSON.stringify(it))}catch(e){}};
+function lista(){const ul=$('lista');ul.textContent='';
+  it.forEach((x,i)=>{const li=document.createElement('li'),c=document.createElement('input'),s=document.createElement('span'),b=document.createElement('button');
+    c.type='checkbox';c.checked=x.d;c.setAttribute('aria-label','Hecha');c.onchange=()=>{x.d=c.checked;guarda();lista()};
+    s.textContent=x.t;if(x.d)s.className='hecha';
+    b.textContent='×';b.setAttribute('aria-label','Borrar');b.onclick=()=>{it.splice(i,1);guarda();lista()};
+    li.append(c,s,b);ul.append(li)})}
+$('fi').onsubmit=e=>{e.preventDefault();const t=$('ti').value.trim();if(!t)return;it.push({t,d:false});$('ti').value='';guarda();lista()};
+lista();
+</script>
+</body>
+</html>
