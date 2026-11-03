@@ -44,7 +44,7 @@
 #circ{width:90px;height:90px;border-radius:50%;border:2px solid var(--oro);background:radial-gradient(circle,rgba(216,176,76,.5),rgba(216,176,76,.05));box-shadow:0 0 30px rgba(216,176,76,.35);display:flex;align-items:center;justify-content:center;transition:transform 4s ease-in-out;text-align:center;font-size:1rem}
 #carta{min-height:7.5rem;display:flex;align-items:center;justify-content:center;text-align:center;font-style:italic;font-size:1.4rem;padding:1rem;border:1px solid var(--oro);margin-top:1rem}
 #sacar{margin-top:1.25rem}
-.dorso{background:repeating-linear-gradient(45deg,rgba(216,176,76,.09) 0 8px,transparent 8px 16px);font-style:normal;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.dorso{background:url(img/corona.webp) center 30%/58% no-repeat,repeating-linear-gradient(45deg,rgba(216,176,76,.09) 0 8px,transparent 8px 16px);align-items:flex-end!important;padding-bottom:1.5rem!important;font-style:normal;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
 .rev{animation:rev .7s ease both}
 @keyframes rev{from{opacity:0;transform:rotateY(80deg) scale(.96)}to{opacity:1;transform:none}}
 .vela.quieta .llama{animation-play-state:paused;opacity:.5}
@@ -81,6 +81,15 @@
 .perga #lista li{border-color:rgba(21,48,47,.3)}.perga #lista button{color:var(--cuero)}.perga #lista input{accent-color:var(--verde)}
 #circ{background:radial-gradient(circle at 38% 35%,#fffbe8,#ecd48a 55%,#b99646);color:#2a2410;border-color:#f3e3a8;box-shadow:0 0 36px rgba(255,235,160,.45)}
 @media(prefers-reduced-motion:reduce){.m,.lluvia i{animation:none}.noche::before{transition:none}}
+/* decoración con imágenes de dominio público */
+.emblema{display:block;width:78px;height:auto;margin:0 auto .6rem;filter:drop-shadow(0 0 16px rgba(216,176,76,.45))}
+.cuadro{display:none}
+@media(min-width:1000px){.hero-wrap{position:relative}.cuadro{display:block;position:absolute;left:0;top:3rem;width:150px;margin:0;padding:8px;background:#3a2318;border:2px solid var(--oro);box-shadow:0 10px 24px rgba(0,0,0,.6);transform:rotate(-2deg)}.cuadro img{display:block;width:100%;height:auto;filter:saturate(.75) sepia(.25) brightness(.9)}}
+.repisa{text-align:center}
+.estatua{display:block;height:150px;width:auto;margin:0 auto;filter:drop-shadow(0 0 5px rgba(255,190,80,.12));transition:filter 1.6s}
+.noche.encendida .estatua{filter:drop-shadow(0 0 18px rgba(255,190,80,.6))}
+.tabla{width:120px;height:10px;margin:0 auto;background:linear-gradient(#5a3a2e,#2c1a17);border-top:2px solid var(--oro)}
+.contacto a:not(.btn){color:var(--oro)}
 </style>
 </head>
 <body>
@@ -99,7 +108,9 @@
 
 <main class="noche">
   <section>
-    <div class="wrap">
+    <div class="wrap hero-wrap">
+      <figure class="cuadro" aria-hidden="true"><img src="img/angel.jpg" alt="" width="360" height="457"></figure>
+      <img class="emblema" src="img/corona.webp" alt="" width="78" height="93">
       <h1 class="tit">El Scriptorium</h1>
       <p class="sub">Un rincón para quedarte un rato</p>
       <div class="orn" role="presentation"></div>
@@ -121,6 +132,7 @@
               <button class="btn peq sec act" id="m-enfoque">Enfoque 25′</button>
               <button class="btn peq sec" id="m-pausa">Pausa 5′</button>
             </div>
+            <div class="repisa" aria-hidden="true"><img class="estatua" src="img/estatua.webp" alt="" width="328" height="360"><div class="tabla"></div></div>
           </div>
         </article>
 
@@ -161,6 +173,15 @@
           <ul id="lista"></ul>
           <p class="nota">Se guardan en este navegador.</p>
         </article>
+        <!-- CONTACTO -->
+        <article class="marco ancho centro-p contacto">
+          <h2>Hablame</h2>
+          <p class="prosa" style="margin:0 auto">Podés hablarme a <a href="mailto:soylucy@lucida.best">soylucy@lucida.best</a> y trabajar 1:1 conmigo. También podés hablarme para contarme cómo estuvo tu día y si lograste completar la To Do List en el Scriptorium de hoy.</p>
+          <div class="botones" style="justify-content:center">
+            <a class="btn" href="mailto:soylucy@lucida.best">Escribime</a>
+            <a class="btn sec" href="https://www.tiktok.com/@lucida.esoterica" target="_blank" rel="noopener">TikTok @lucida.esoterica</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -170,6 +191,8 @@
 <footer>
   <div class="orn" role="presentation"></div>
   <p>© Lúcida · Comunicación Esotérica</p>
+  <p class="pie"><a href="mailto:soylucy@lucida.best">soylucy@lucida.best</a> · <a href="https://www.tiktok.com/@lucida.esoterica" target="_blank" rel="noopener">TikTok @lucida.esoterica</a></p>
+  <p class="cred">Imágenes: The Metropolitan Museum of Art (Open Access) y Smithsonian American Art Museum.</p>
 </footer>
 
 <script src="cartas.js"></script>
