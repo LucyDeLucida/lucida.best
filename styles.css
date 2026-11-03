@@ -84,7 +84,7 @@ footer{padding:2.5rem 0;text-align:center;font-size:1rem;border-top:1px solid rg
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
 /* vela (Scriptorium e Inicio) */
-.vela{--h:100%;position:relative;width:54px;height:170px;margin:0 auto}
+.vela{--h:100%;position:relative;width:54px;height:190px;margin:0 auto}
 .cera{position:absolute;left:0;right:0;bottom:0;height:var(--h);background:linear-gradient(90deg,#d9cbb0,#f6eedb 50%,#cdbd9c);border-radius:4px 4px 2px 2px;transition:height 1s linear}
 .cera::before{content:"";position:absolute;left:50%;top:-8px;width:2px;height:10px;background:#2a1d14;transform:translateX(-50%)}
 .llama{position:absolute;left:50%;bottom:calc(var(--h) + 8px);width:16px;height:34px;margin-left:-8px;background:radial-gradient(ellipse at 50% 70%,#fff6c8,#ffc94d 45%,rgba(255,140,30,0) 75%);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;box-shadow:0 0 34px 14px rgba(255,190,80,.35);transform-origin:50% 100%;animation:fl .18s infinite alternate;transition:bottom 1s linear}
