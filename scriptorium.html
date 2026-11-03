@@ -27,7 +27,6 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 -->
 <style>
-.noche{background:radial-gradient(ellipse at 50% 25%,#244a47,#0d1f1e 75%)}
 .tit{font-size:clamp(2.6rem,9vw,5rem);color:var(--oro);text-align:center}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:2.5rem 2rem;margin-top:2rem}
 .ancho{grid-column:1/-1}
@@ -58,6 +57,30 @@
 #lista .hecha{text-decoration:line-through;opacity:.55}
 #lista button{background:none;border:0;color:var(--oro);font-size:1.4rem;cursor:pointer}
 #lista input{accent-color:var(--oro)}
+.noche{position:relative;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='%23E8B58A' fill-opacity='.07'%3E%3Cpath d='M40 4c10 14 10 26 0 36-10-10-10-22 0-36zM40 76c10-14 10-26 0-36-10 10-10 22 0 36zM4 40c14-10 26-10 36 0-10 10-22 10-36 0zM76 40c-14-10-26-10-36 0 10 10 22 10 36 0z'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E") 0 0/80px 80px,radial-gradient(ellipse at 50% 25%,#244a47,#0d1f1e 75%)}
+.noche::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;background:rgba(4,10,10,.38);transition:opacity 1.6s}
+.noche.encendida::before{opacity:0}
+.noche::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.6))}
+#motas{position:fixed;inset:0;pointer-events:none;z-index:3}
+.m{position:absolute;top:100%;border-radius:50%;background:rgba(255,220,150,.7);animation:flota linear infinite}
+@keyframes flota{to{transform:translate(40px,-110vh);opacity:0}}
+.zocalo{height:64px;background:linear-gradient(#4a2e2a,#24140f);border-top:3px solid var(--oro)}
+.marco h2::before,.marco h2::after{content:"✦";font-size:.55em;margin:0 .7em;color:var(--cobre);vertical-align:middle}
+.ventana{position:relative;overflow:hidden;width:110px;height:130px;margin:.5rem auto 1rem;border:3px solid var(--oro);border-radius:55px 55px 4px 4px;background:linear-gradient(#0b1c1b,#18353a)}
+.ventana::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--oro),var(--oro)) 50% 0/2px 100% no-repeat,linear-gradient(var(--oro),var(--oro)) 0 55%/100% 2px no-repeat}
+.lluvia{position:absolute;inset:-25%;opacity:var(--lluvia,0);transform:rotate(calc(var(--viento,0)*22deg))}
+.lluvia i{position:absolute;top:-20px;width:1.5px;height:16px;background:linear-gradient(transparent,#9cc9d6);animation:cae linear infinite}
+@keyframes cae{to{transform:translateY(230px)}}
+.brasa{position:absolute;inset:auto 0 0;height:65%;background:radial-gradient(ellipse at 50% 100%,#ff9a3c,transparent 72%);opacity:var(--fuego,0)}
+#carta{aspect-ratio:2/3;max-width:230px;min-height:0;margin:1rem auto 0;padding:1.4rem;border:2px solid var(--oro);outline:1px solid var(--oro);outline-offset:-9px;border-radius:10px;font-size:1.15rem;line-height:1.4}
+.dorso{font-size:.95rem!important;line-height:1.8!important}
+.rev{background:radial-gradient(ellipse at 50% 0,#f4ecda,#d8ccb2);color:var(--tinta)}
+.marco.perga{background:radial-gradient(ellipse at 50% 0,#f4ecda,#d8ccb2);color:var(--tinta);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.perga h2{color:var(--verde)}.perga h2::before,.perga h2::after{color:var(--cuero)}
+.perga #fi input{color:var(--tinta);border-color:var(--verde)}.perga #fi input::placeholder{color:#5b5546}
+.perga #lista li{border-color:rgba(21,48,47,.3)}.perga #lista button{color:var(--cuero)}.perga #lista input{accent-color:var(--verde)}
+#circ{background:radial-gradient(circle at 38% 35%,#fffbe8,#ecd48a 55%,#b99646);color:#2a2410;border-color:#f3e3a8;box-shadow:0 0 36px rgba(255,235,160,.45)}
+@media(prefers-reduced-motion:reduce){.m,.lluvia i{animation:none}.noche::before{transition:none}}
 </style>
 </head>
 <body>
@@ -104,6 +127,7 @@
         <!-- SONIDOS -->
         <article class="marco snd">
           <h2>Ambiente</h2>
+          <div class="ventana" id="amb" aria-hidden="true"><div class="lluvia" id="lluvia"></div><div class="brasa"></div></div>
           <label>Lluvia <input type="range" min="0" max="100" value="0" data-s="lluvia"></label>
           <label>Fuego <input type="range" min="0" max="100" value="0" data-s="fuego"></label>
           <label>Viento <input type="range" min="0" max="100" value="0" data-s="viento"></label>
@@ -127,7 +151,7 @@
         </article>
 
         <!-- INTENCIONES -->
-        <article class="marco ancho">
+        <article class="marco ancho perga">
           <h2>Intenciones</h2>
           <p class="nota">(Agregá acá tu lista de quehaceres y tildá los que vayas completando.)</p>
           <form id="fi">
@@ -140,6 +164,7 @@
       </div>
     </div>
   </section>
+<div class="zocalo"></div>
 </main>
 
 <footer>
@@ -170,8 +195,14 @@ function init(){
     s.buffer=bw;s.connect(h);h.connect(g);g.connect(G.fuego);g.gain.setValueAtTime(Math.random()*1.2,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);s.start(t,Math.random(),.06)}},140);
 }
 document.querySelectorAll('[data-s]').forEach(r=>{r.oninput=()=>{init();G[r.dataset.s].gain.setTargetAtTime(r.value/100*K[r.dataset.s],ac.currentTime,.15)}});
-$('mudo').onclick=()=>document.querySelectorAll('[data-s]').forEach(r=>{r.value=0;if(ac)r.oninput()});
+document.querySelectorAll('[data-s]').forEach(r=>r.addEventListener('input',()=>$('amb').style.setProperty('--'+r.dataset.s,r.value/100)));
+$('mudo').onclick=()=>document.querySelectorAll('[data-s]').forEach(r=>{r.value=0;r.dispatchEvent(new Event('input'))});
 function campana(){init();const t=ac.currentTime;[528,792].forEach((hz,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=hz;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25/(i+1),t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+3);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+3)})}
+
+/* ---------- Habitación: lluvia y motas de polvo ---------- */
+for(let i=0;i<26;i++){const e=document.createElement('i');e.style.cssText=`left:${Math.random()*100}%;animation-delay:-${Math.random()}s;animation-duration:${.5+Math.random()*.5}s`;$('lluvia').append(e)}
+const mt=document.createElement('div');mt.id='motas';mt.setAttribute('aria-hidden','true');document.querySelector('main').prepend(mt);
+for(let i=0;i<16;i++){const e=document.createElement('i'),z=2+Math.random()*3;e.className='m';e.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${14+Math.random()*16}s;animation-delay:-${Math.random()*20}s`;mt.append(e)}
 
 /* ---------- Pomodoro con vela ---------- */
 const TT=document.title;const M={enfoque:1500,pausa:300};let modo='enfoque',left=M.enfoque,fin=0,tid=null;
@@ -181,6 +212,7 @@ function pinta(){
   document.title=(tid?m+':'+s+' · ':'')+TT;
   $('vela').style.setProperty('--h',(modo==='enfoque'?6+94*left/M.enfoque:100)+'%');
   $('vela').classList.toggle('quieta',!tid&&left<M[modo]);
+  document.querySelector('main').classList.toggle('encendida',!!tid);
   $('modo').textContent=modo==='enfoque'?'Tiempo de enfoque':'Tiempo de pausa';
   $('m-enfoque').classList.toggle('act',modo==='enfoque');$('m-pausa').classList.toggle('act',modo==='pausa');
 }
