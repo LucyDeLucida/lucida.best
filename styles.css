@@ -97,7 +97,7 @@ footer{padding:2.5rem 0;text-align:center;font-size:1rem;border-top:1px solid rg
 .portal:hover{animation:none;box-shadow:0 0 80px rgba(216,176,76,.42)}
 .portal:hover .btn{background:transparent;color:var(--oro)}
 .pv{transform:scale(1.2);padding:1.5rem 0}
-.portal h2{font-size:clamp(2.4rem,6.5vw,3.8rem);margin-bottom:.5rem}
+.portal h2{font-size:clamp(1.9rem,4.6vw,2.9rem);margin-bottom:1rem}
 .eyebrow{font-style:italic;color:var(--cobre);letter-spacing:.04em}
 .ct{margin:1.25rem 0 .25rem;padding:.6rem 1.1rem;border-left:2px solid var(--oro);font-style:italic}
 .ct small{display:block;font-style:normal;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
@@ -106,3 +106,13 @@ footer{padding:2.5rem 0;text-align:center;font-size:1rem;border-top:1px solid rg
 
 .cred{font-size:.9rem;opacity:.7;margin-top:.4rem}
 .pie{margin-top:.6rem}.pie a{color:var(--oro);text-decoration:underline;text-underline-offset:3px}
+
+/* carta del día en el Inicio */
+.tarot{aspect-ratio:2/3;width:100%;max-width:230px;margin:0 auto;padding:1.4rem;border:2px solid var(--oro);outline:1px solid var(--oro);outline-offset:-9px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-style:italic;font-size:1.15rem;line-height:1.4}
+.dorso{background:url(img/corona.webp) center 30%/58% no-repeat,repeating-linear-gradient(45deg,rgba(216,176,76,.09) 0 8px,transparent 8px 16px);align-items:flex-end;padding-bottom:1.5rem;font-style:normal;font-size:.95rem;line-height:1.8;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.rev{background:radial-gradient(ellipse at 50% 0,#f4ecda,#d8ccb2);color:var(--tinta);animation:rev .7s ease both}
+@keyframes rev{from{opacity:0;transform:rotateY(80deg) scale(.96)}to{opacity:1;transform:none}}
+button.btn{cursor:pointer}
+.btn:disabled{opacity:.55;cursor:default}.btn:disabled:hover{background:var(--oro);color:var(--verde)}
+@media(prefers-reduced-motion:reduce){.rev{animation:none}}
+[hidden]{display:none!important}
