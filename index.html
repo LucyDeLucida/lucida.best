@@ -82,7 +82,16 @@
     <div class="wrap centro">
       <h2>Sesiones 1:1</h2>
       <p class="prosa" style="margin:0 auto">Podés tener una sesión 1:1 conmigo, sólo contactándome a través del correo.</p>
-            <p style="margin-top:1.25rem;font-size:1.5rem;color:var(--oro);user-select:all;-webkit-user-select:all">soylucy@lucida.best</p>
+      <p id="correo" style="margin-top:1.25rem;font-size:1.5rem;color:var(--oro);user-select:all;-webkit-user-select:all">soylucy@lucida.best</p>
+      <button class="btn" type="button" id="copiar">Copiar correo</button>
+      <script>
+      document.getElementById('copiar').onclick=function(){
+        var b=this,t='soylucy@lucida.best';
+        function ok(){b.textContent='¡Copiado!';setTimeout(function(){b.textContent='Copiar correo'},2000)}
+        function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('correo'));var s=getSelection();s.removeAllRanges();s.addRange(r);try{if(document.execCommand('copy'))ok()}catch(e){}}
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,sel)}else{sel()}
+      };
+      </script>
     </div>
   </section>
 
