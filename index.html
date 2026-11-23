@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lúcida · Comunicación Esotérica | Workbooks somáticos</title>
-<meta name="description" content="Tres workbooks con ejercicios somáticos para reflexionar y volver al cuerpo, también en audio. Visitá El Scriptorium, un rincón cozy para hacer pausas.">
+<meta name="description" content="Tres workbooks con ejercicios somáticos para reflexionar y volver al cuerpo, también en audio. Sacá tu carta del día.">
 <meta name="theme-color" content="#15302F">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Lúcida · Comunicación Esotérica">
 <meta property="og:title" content="Lúcida · Comunicación Esotérica | Workbooks somáticos">
-<meta property="og:description" content="Tres workbooks con ejercicios somáticos para reflexionar y volver al cuerpo, también en audio. Visitá El Scriptorium, un rincón cozy para hacer pausas.">
+<meta property="og:description" content="Tres workbooks con ejercicios somáticos para reflexionar y volver al cuerpo, también en audio. Sacá tu carta del día.">
 <link rel="canonical" href="https://lucida.best/">
 <meta property="og:url" content="https://lucida.best/">
 <meta property="og:image" content="https://lucida.best/img/og.jpg">
@@ -36,7 +36,6 @@
       <li><a href="index.html" aria-current="page">Inicio</a></li>
       <li><a href="dispositivos.html">Dispositivos</a></li>
       <li><a href="metodo.html">Método y aviso</a></li>
-      <li><a class="dest" href="scriptorium.html">El Scriptorium</a></li>
     </ul>
   </nav>
 </header>
@@ -48,19 +47,15 @@
       <p class="sub">Comunicación Esotérica</p>
       <div class="orn" role="presentation"></div>
 
-      <a class="portal marco" href="scriptorium.html">
-        <div class="pv" aria-hidden="true">
-          <div class="vela"><div class="cera"></div><div class="llama"></div></div>
-          <div class="platillo"></div>
-        </div>
+      <div class="portal marco">
+        <div class="pc"><div id="carta" class="tarot dorso" aria-live="polite">✦ Recibo mi carta de hoy ✦</div></div>
         <div>
-          <p class="eyebrow">Entrá al rincón de Lúcida</p>
-          <h2>El Scriptorium</h2>
-          <p>Un rincón para hacer pausas: pomodoro con vela, sonidos de lluvia, fuego y viento, respiración guiada y una carta distinta cada día.</p>
-          <p class="ct"><small>Carta de hoy</small><span>Sacar una carta es un compromiso. ¿Estás dispuesta?</span></p>
-          <span class="btn">Entrar al Scriptorium</span>
+          <p class="eyebrow">Carta del día</p>
+          <h2>Sacar una carta es un compromiso. ¿Estás dispuesta?</h2>
+          <button class="btn" id="sacar">Descubrir la carta de hoy</button>
+          <p class="ct" id="cnota" hidden>Volvé mañana por tu próxima carta.</p>
         </div>
-      </a>
+      </div>
 
       <p class="lema">Y tres Dispositivos para reflexionar, volver al cuerpo y experimentar lo que necesite ser experimentado.</p>
       <p class="centro"><a class="btn sec" href="dispositivos.html">Ver los Dispositivos</a></p>
@@ -74,6 +69,14 @@
         <p>Son tres workbooks, también en formato de audio, que combinan reflexión escrita con ejercicios somáticos. No se leen para entender: se usan para sentir.</p>
         <p>Cada uno es consecuencia del anterior. Se transitan en orden, y con cada paso el trabajo se vuelve más complejo para alcanzar estados de mayor profundidad.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="cuero">
+    <div class="wrap centro">
+      <h2>Sesiones 1:1</h2>
+      <p class="prosa" style="margin:0 auto">Podés tener una sesión 1:1 conmigo, sólo contactándome a través del correo.</p>
+      <a class="btn" href="mailto:soylucy@lucida.best">Escribime a soylucy@lucida.best</a>
     </div>
   </section>
 
@@ -101,14 +104,37 @@
       <p class="centro"><a class="btn sec" href="dispositivos.html">Conocer cada Dispositivo</a></p>
     </div>
   </section>
+  <section style="padding:2.5rem 0">
+    <div class="wrap centro">
+      <div class="marco" style="max-width:34rem;margin:0 auto;padding:1.5rem">
+        <p class="eyebrow">Próximamente</p>
+        <p><strong>El Scriptorium:</strong> un rincón para hacer pausas, con pomodoro, sonidos ambientales y más. Lo estamos preparando.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="orn" role="presentation"></div>
   <p>© Lúcida · Comunicación Esotérica</p>
   <p class="pie"><a href="mailto:soylucy@lucida.best">soylucy@lucida.best</a> · <a href="https://www.tiktok.com/@lucida.esoterica" target="_blank" rel="noopener">TikTok @lucida.esoterica</a></p>
-  <p class="cred">Imágenes: The Metropolitan Museum of Art (Open Access) y Smithsonian American Art Museum.</p>
+  <p class="cred">Imágenes: The Metropolitan Museum of Art (Open Access).</p>
 </footer>
 
+<script src="cartas.js"></script>
+<script src="cartadia.js"></script>
+<script>
+(function(){
+  if(typeof CARTAS==='undefined')return;
+  var b=document.getElementById('sacar'),c=document.getElementById('carta');
+  if(dias(INICIO,hoy())<0){
+    var p=INICIO.split('-').map(Number);
+    b.disabled=true;b.textContent='Las cartas comienzan el '+new Date(p[0],p[1]-1,p[2]).toLocaleDateString('es-AR',{day:'numeric',month:'long'});
+    return;
+  }
+  b.onclick=function(){c.classList.remove('dorso','rev');c.textContent=cartaDeHoy();void c.offsetWidth;c.classList.add('rev');b.hidden=true;document.getElementById('cnota').hidden=false};
+})();
+</script>
 </body>
 </html>
+
